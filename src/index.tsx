@@ -1,12 +1,16 @@
-import { Hono } from 'hono'
-import { renderer } from './renderer'
+import { Hono } from "hono";
+import { renderer } from "./renderer";
 
-const app = new Hono()
+type Bindings = {
+    MY_DB: D1Database;
+};
 
-app.get('*', renderer)
+const app = new Hono<{ Bindings: Bindings }>();
 
-app.get('/', (c) => {
-  return c.render(<h1>Hello, Cloudflare Pages!</h1>)
-})
+app.get("*", renderer);
 
-export default app
+app.get("/", (c) => {
+    return c.render(<h1>Hello, Cloudflare Pages!</h1>);
+});
+
+export default app;
