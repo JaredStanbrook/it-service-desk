@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { renderer } from "./renderer";
+import { basicAuth } from 'hono/basic-auth'
 import { findAllStudents } from "./db";
 
 type Bindings = {
@@ -8,7 +9,12 @@ type Bindings = {
 
 const app = new Hono<{ Bindings: Bindings }>();
 
-app.get("*", renderer);
+const auth = basicAuth({
+  username: 'hono',
+  password: 'acoolproject',
+})
+
+app.get("*", renderer, auth);
 
 app.get("/", async(c) => {
     const students = await findAllStudents(c.env.DB);
