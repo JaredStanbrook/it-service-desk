@@ -8,7 +8,6 @@ type Bindings = {
 const app = new Hono<{ Bindings: Bindings }>();
 
 app.get("/:username", (c) => {
-    const { username } = c.req.param();
     return c.html(
         html`
             <html>
