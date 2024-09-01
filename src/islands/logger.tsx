@@ -31,50 +31,45 @@ const StudentForm: FC = () => {
     };
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            method="POST"
-            className="mt-6 space-y-4 flex flex-col justify-items-start">
-            <h1 className="text-3xl font-semibold dark:text-white"> Add a New Student</h1>
-            <div>
-                <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 dark:text-white">
-                    Name
-                </label>
-                <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={student.name}
-                    required
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 "
-                />
-            </div>
-            <div>
-                <label
-                    htmlFor="id"
-                    className="block text-sm font-medium text-gray-700 dark:text-white">
-                    Student ID
-                </label>
-                <input
-                    type="text"
-                    name="student_id"
-                    id="student_id"
-                    value={student.student_id}
-                    required
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 "
-                />
-            </div>
-            <button
-                type="submit"
-                disabled={isLoading}
-                className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${
-                    isLoading ? "bg-indigo-400" : "bg-indigo-600"
-                }`}>
-                {isLoading ? "Submitting..." : "Add Student"}
-            </button>
-        </form>
+        <div>
+            <h1 className="text-5xl font-semibold text-white text-center p-4">Welcome</h1>
+            <form onSubmit={handleSubmit} method="POST">
+                <div>
+                    <div className="container">
+                        <input
+                            type="text"
+                            name="name"
+                            id="name"
+                            value={student.name}
+                            required
+                            autocomplete="off"
+                            className="input"
+                        />
+                        <label class="label">Fullname</label>
+                    </div>
+                </div>
+                <div>
+                    <div class="container">
+                        <input
+                            type="text"
+                            name="student_id"
+                            id="student_id"
+                            value={student.student_id}
+                            required
+                            autocomplete="off"
+                            className="input"
+                        />
+                        <label class="label">Student ID</label>
+                    </div>
+                </div>
+                <button
+                    type="submit"
+                    disabled={isLoading}
+                    className={`${isLoading ? "bg-indigo-400" : ""}`}>
+                    {isLoading ? "Submitting..." : "Add Student"}
+                </button>
+            </form>
+        </div>
     );
 };
 

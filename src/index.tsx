@@ -2,12 +2,12 @@ import { Hono } from "hono";
 import { renderer } from "./renderer";
 import { basicAuth } from "hono/basic-auth";
 import { prettyJSON } from "hono/pretty-json";
-import { findAllStudents } from "./db";
+import { findAllStudents, seedStudentTable, dropStudentTable } from "./db";
 import type { Student } from "./db";
 import { createStudent } from "./db";
 import StudentForm from "./islands/logger";
 import Display from "./islands/display";
-import { getFormDataValue, getFormDataNumber } from './utils/formData'
+import { getFormDataValue, getFormDataNumber } from "./utils/formData";
 
 type Bindings = {
     DB: D1Database;
@@ -17,34 +17,25 @@ type Bindings = {
 
 const app = new Hono<{ Bindings: Bindings }>();
 
-app.get("*", renderer);
 app.use(prettyJSON());
+app.use(renderer);
 
+app.get("/", (c) => {
+    return c.redirect("/log");
+});
 app.get(
-    "/",
-    /*
-    async (c, next) => {
-        const auth = basicAuth({
-            username: "admin", //c.env.USERNAME
-            password: "admin", //c.env.PASSWORD
-        });
-        return auth(c, next);
-    },*/
-    async (c) => {
-        const students = await findAllStudents(c.env.DB);
-        //const students = '[{"_id":1,"name":"Jared Stanbrook","student_id":"34113043"},{"_id":2,"name":"Miles Stanbrook","student_id":"34113043"}]';
-        return c.render(<Display entrys={JSON.parse(JSON.stringify(students))} />, {
-            title: "My Title",
-        });
-    }
-);
-app.get(
-    "/logg/*",
+    "/all/*",
     basicAuth({
         username: "admin", //c.env.USERNAME
         password: "admin", //c.env.PASSWORD
     })
 );
+app.get("/all", async (c) => {
+    const students = await findAllStudents(c.env.DB);
+    return c.render(<Display entrys={JSON.stringify(students)} />, {
+        title: "My Title",
+    });
+});
 app.get("/log", async (c) => {
     return c.render(<StudentForm />, {
         title: "Logger!!",
@@ -62,11 +53,15 @@ app.post("/log", async (c) => {
         console.log(studentData);
         await createStudent(c.env.DB, studentData);
 
-        return c.redirect("/", 303);
+        return c.redirect("/all", 303);
     } catch (error) {
         console.error("Error handling POST request:", error);
         return new Response("Error processing your request", { status: 500 });
     }
 });
-
+app.get("/reset", async (c) => {
+    await dropStudentTable(c.env.DB);
+    await seedStudentTable(c.env.DB);
+    return c.redirect("/", 303);
+});
 export default app;

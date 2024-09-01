@@ -10,13 +10,16 @@ const Layout: FC = (props) => {
 };
 
 const Display: FC<{ entrys: string }> = (props: { entrys: string }) => {
+    const array = JSON.parse(props.entrys);
     return (
         <Layout>
-            <ul>
-                {JSON.parse(props.entrys).map((entry: Student) => {
-                    return <li>{entry.name + " " + entry.student_id}</li>;
-                })}
-            </ul>
+            <div className="container">
+                <ul>
+                    {array.map((entry: Student) => {
+                        return <li>{entry.name + " " + entry.student_id}</li>;
+                    })}
+                </ul>
+            </div>
         </Layout>
     );
 };
