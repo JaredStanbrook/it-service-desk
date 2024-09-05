@@ -1,5 +1,8 @@
 # prod
 dist/
+wrangler.toml
+wrangler.example.toml
+package-lock.json
 
 # dev
 .yarn/
@@ -20,9 +23,6 @@ node_modules/
 .env
 .env.production
 .dev.vars
-
-wrangler.toml
-package-lock.json
 
 # logs
 logs/

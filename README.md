@@ -1,12 +1,11 @@
-# Staff Directory - Built with HonoX, Cloudflare Pages and D1
+# IT Service Desk (Customer Logger) - Built with Hono, Cloudflare Pages and D1
 
-Staff Directory is an intuitive Employee Resource Hub designed to simplify the way teams interact and collaborate. Built using the powerful combination of HonoX for backend logic, Cloudflare Pages for fast and secure hosting, and Cloudflare D1 for seamless database management.
+This customer logger is designed to simplify the way students interact with customers. Built using the powerful combination of Hono for backend logic, Cloudflare Pages for fast and secure hosting, and Cloudflare D1 for seamless database management.
 
 ## Features
 
--   **Employee Listings**: Access a comprehensive list of employees to easily find and learn about colleagues.
+-   **Customer Listings**: Access a comprehensive list of employees to easily find and learn about colleagues.
 -   **Dark Theme Mode**: Enhance your viewing experience with a built-in dark theme mode.
--   **Employee Count**: View the total number of employees at a glance.
 -   **Simple Authentication**: Secure your data with basic authentication provided by Hono/Basic Auth.
 
 ## Demo
@@ -46,11 +45,7 @@ To get a local copy up and running, follow these simple steps.
     ```
 6. Seed local DB with data
     ```sh
-    npx wrangler d1 execute <DATABASE_NAME> --local --file=./schema.sql
-    ```
-7. Create a bucket with Wrangler and copy config to wrangler.toml
-    ```
-    npx wrangler r2 bucket create <NAME>
+    npx wrangler d1 execute <DATABASE_NAME> --remote --file=./schema.sql
     ```
     ## Contributing
 
