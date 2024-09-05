@@ -14,11 +14,15 @@ dist/
 # deps
 node_modules/
 .wrangler
+.hono
 
 # env
 .env
 .env.production
 .dev.vars
+
+wrangler.toml
+package-lock.json
 
 # logs
 logs/
