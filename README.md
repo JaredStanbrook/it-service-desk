@@ -1,11 +1,11 @@
-# IT Service Desk (Customer Logger) - Built with Hono, Cloudflare Pages and D1
+# Customer Logger - Built with Hono, Cloudflare Pages and D1
 
-This customer logger is designed to simplify the way students interact with customers. Built using the powerful combination of Hono for backend logic, Cloudflare Pages for fast and secure hosting, and Cloudflare D1 for seamless database management.
+This customer logger is designed to simplify the way students interact with clients. Built using the powerful combination of Hono for backend logic, Cloudflare Pages for fast and secure hosting, and Cloudflare D1 for seamless database management.
 
 ## Features
 
--   **Customer Listings**: Access a comprehensive list of employees to easily find and learn about colleagues.
--   **Dark Theme Mode**: Enhance your viewing experience with a built-in dark theme mode.
+-   **Customer Listings**: Access a basic list of clients to easily track who has visited the service desk.
+-   **Dark Theme Mode (TODO)**: Enhance your viewing experience with a built-in dark theme mode.
 -   **Simple Authentication**: Secure your data with basic authentication provided by Hono/Basic Auth.
 
 ## Demo
@@ -43,13 +43,13 @@ To get a local copy up and running, follow these simple steps.
     ```
     npx wrangler d1 create <DATABASE_NAME>
     ```
-6. Seed local DB with data
+6. Seed remote DB with data
     ```sh
     npx wrangler d1 execute <DATABASE_NAME> --remote --file=./schema.sql
     ```
     ## Contributing
 
-I welcome contributions. Any contributions you make are **greatly appreciated**.
+This is intended to be worked on by Murdoch University students studying ICT299. Any contributions you make are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature AmazingFeature`)

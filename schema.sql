@@ -1,4 +1,4 @@
--- npx wrangler d1 execute it-service-desk-db --remote --command "SELECT students.* FROM students"
+-- npx wrangler d1 execute <db-name> --remote --command "SELECT students.* FROM students"
 DROP TABLE IF EXISTS students;
 
 CREATE TABLE IF NOT EXISTS students (

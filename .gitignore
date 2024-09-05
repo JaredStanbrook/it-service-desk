@@ -1,7 +1,6 @@
 # prod
 dist/
 wrangler.toml
-wrangler.example.toml
 package-lock.json
 
 # dev
