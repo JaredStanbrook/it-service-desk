@@ -30,6 +30,13 @@ app.get(
         password: "admin", //c.env.PASSWORD
     })
 );
+app.get(
+    "/reset/*",
+    basicAuth({
+        username: "reset", //c.env.USERNAME
+        password: "reset", //c.env.PASSWORD
+    })
+);
 app.get("/all", async (c) => {
     const students = await findAllStudents(c.env.DB);
     return c.render(<Display entrys={JSON.stringify(students)} />, {
