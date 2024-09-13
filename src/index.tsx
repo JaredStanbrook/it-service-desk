@@ -5,7 +5,8 @@ import { prettyJSON } from "hono/pretty-json";
 import { findAllStudents, seedStudentTable, dropStudentTable } from "./db";
 import type { Student } from "./db";
 import { createStudent } from "./db";
-import StudentForm from "./islands/logger";
+import StudentForm from "./islands/studentform";
+import FeedbackForm from "./islands/feedbackform";
 import Display from "./islands/display";
 import { getFormDataValue, getFormDataNumber } from "./utils/formData";
 
@@ -49,7 +50,7 @@ app.get("/log", async (c) => {
     });
 });
 app.get("/feedback", async (c) => {
-    return c.render(<StudentForm />, {
+    return c.render(<FeedbackForm />, {
         title: "Logger!!",
     });
 });

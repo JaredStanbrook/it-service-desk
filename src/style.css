@@ -21,7 +21,7 @@
         position: absolute;
         z-index: -1;
         width: 100%;
-        height
+        height: 100%;
     }
     footer {
         position: fixed;
