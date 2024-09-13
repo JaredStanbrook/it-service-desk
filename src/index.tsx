@@ -60,7 +60,7 @@ app.post("/log", async (c) => {
         console.log(studentData);
         await createStudent(c.env.DB, studentData);
 
-        return c.redirect("/all", 303);
+        return c.redirect("/log", 303);
     } catch (error) {
         console.error("Error handling POST request:", error);
         return new Response("Error processing your request", { status: 500 });
