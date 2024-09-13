@@ -1,15 +1,15 @@
 import { useState } from "hono/jsx";
 import type { FC } from "hono/jsx";
-import type { Student } from "../db";
+import type { Feedback } from "../db";
 
 const FeedbackForm: FC = () => {
-    const [student, setStudent] = useState<Partial<Student>>({});
+    const [feedback, setFeedback] = useState<Partial<Feedback>>({});
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e: Event) => {
         e.preventDefault();
         setIsLoading(true);
-        console.log("Submitting student:", student);
+        console.log("Submitting feedback:", feedback);
         const formData = new FormData();
 
         try {
@@ -22,7 +22,7 @@ const FeedbackForm: FC = () => {
 
             const result = await response.json();
             console.log("Success:", result);
-            setStudent({});
+            setFeedback({});
         } catch (error) {
             console.error("Error:", error);
         } finally {
@@ -40,7 +40,7 @@ const FeedbackForm: FC = () => {
                             type="text"
                             name="name"
                             id="name"
-                            value={student.name}
+                            value={feedback.name}
                             required
                             autocomplete="off"
                             className="input"
@@ -54,7 +54,7 @@ const FeedbackForm: FC = () => {
                             type="text"
                             name="student_id"
                             id="student_id"
-                            value={student.student_id}
+                            value={feedback.student_id}
                             required
                             autocomplete="off"
                             className="input"
@@ -62,12 +62,43 @@ const FeedbackForm: FC = () => {
                         <label class="label">Student ID</label>
                     </div>
                 </div>
-                <button
-                    type="submit"
-                    disabled={isLoading}
-                    className={`${isLoading ? "bg-indigo-400" : ""}`}>
-                    {isLoading ? "Submitting..." : "Add Student"}
-                </button>
+                <div>
+                    <div class="container">
+                        <input
+                            type="text"
+                            name="description"
+                            id="description"
+                            value={feedback.description}
+                            required
+                            autocomplete="off"
+                            className="input"
+                        />
+                        <label class="label">Description</label>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Rating</label>
+                    <div class="container">
+                        <input
+                            type="range"
+                            id="rating"
+                            value={feedback.rating}
+                            required
+                            autocomplete="off"
+                            className="input"
+                            min="1"
+                            max="5"
+                        />
+                    </div>
+                </div>
+                <div class="container">
+                    <button
+                        type="submit"
+                        disabled={isLoading}
+                        className={`${isLoading ? "bg-indigo-400" : ""}`}>
+                        {isLoading ? "Submitting..." : "Send"}
+                    </button>
+                </div>
             </form>
         </div>
     );

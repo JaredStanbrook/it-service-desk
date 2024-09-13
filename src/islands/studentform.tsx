@@ -76,12 +76,14 @@ const StudentForm: FC = () => {
                         <label class="label">Staff Name</label>
                     </div>
                 </div>
-                <button
-                    type="submit"
-                    disabled={isLoading}
-                    className={`${isLoading ? "bg-indigo-400" : ""}`}>
-                    {isLoading ? "Submitting..." : "Add Student"}
-                </button>
+                <div class="container">
+                    <button
+                        type="submit"
+                        disabled={isLoading}
+                        className={`${isLoading ? "bg-indigo-400" : ""}`}>
+                        {isLoading ? "Submitting..." : "Submit"}
+                    </button>
+                </div>
             </form>
         </div>
     );

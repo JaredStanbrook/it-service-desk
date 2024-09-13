@@ -51,7 +51,7 @@ app.get("/log", async (c) => {
 });
 app.get("/feedback", async (c) => {
     return c.render(<FeedbackForm />, {
-        title: "Logger!!",
+        title: "Feedback!!",
     });
 });
 app.post("/log", async (c) => {

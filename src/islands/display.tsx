@@ -16,7 +16,7 @@ const Display: FC<{ entrys: string }> = (props: { entrys: string }) => {
             <div className="container">
                 <ul>
                     {array.map((entry: Student) => {
-                        return <li>{entry.name + " " + entry.student_id}</li>;
+                        return <li>{entry.name + " " + entry.student_id + " - " + entry.student_id}</li>;
                     })}
                 </ul>
             </div>
