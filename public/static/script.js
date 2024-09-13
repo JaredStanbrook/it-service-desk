@@ -3,10 +3,10 @@ class GradientAnimation {
         this.cnv = document.querySelector(`canvas`);
         this.ctx = this.cnv.getContext(`2d`);
 
-        this.circlesNum = 15;
+        this.circlesNum = 30;
         this.minRadius = 400;
-        this.maxRadius = 400;
-        this.speed = 0.005;
+        this.maxRadius = 600;
+        this.speed = 0.01;
 
         (window.onresize = () => {
             this.setCanvasSize();

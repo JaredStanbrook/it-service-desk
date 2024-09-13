@@ -48,6 +48,11 @@ app.get("/log", async (c) => {
         title: "Logger!!",
     });
 });
+app.get("/feedback", async (c) => {
+    return c.render(<StudentForm />, {
+        title: "Logger!!",
+    });
+});
 app.post("/log", async (c) => {
     try {
         const formData = await c.req.formData();

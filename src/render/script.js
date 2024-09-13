@@ -44,8 +44,8 @@ class GradientAnimation {
         this.speed = 0.005;
 
         (window.onresize = () => {
-            this.setCanvasSize();
-            this.createCircles();
+            //this.setCanvasSize();
+            //this.createCircles();
         })();
         this.drawAnimation();
     }
