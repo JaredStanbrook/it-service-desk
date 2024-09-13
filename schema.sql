@@ -1,11 +1,17 @@
 -- npx wrangler d1 execute <db-name> --remote --command "SELECT students.* FROM students"
-DROP TABLE IF EXISTS students;
+-- npx wrangler d1 execute it-service-desk-db --remote --file ./schema.sql
 
-CREATE TABLE IF NOT EXISTS students (
-    _id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name VARCHAR(255) NOT NULL,
-    student_id VARCHAR(255) NOT NULL
-);
+-- DROP TABLE IF EXISTS students;
 
-INSERT INTO students (name, student_id) VALUES 
-('Jared Stanbrook','34113043');
+-- CREATE TABLE IF NOT EXISTS students (
+--     _id INTEGER PRIMARY KEY AUTOINCREMENT,
+--     name VARCHAR(255) NOT NULL,
+--     student_id VARCHAR(255) NOT NULL,
+--     staff_name VARCHAR(255)
+-- );
+
+-- ALTER TABLE students
+-- ADD staff_name VARCHAR(255);
+
+-- INSERT INTO students (name, student_id) VALUES 
+-- ('Jared Stanbrook','34113043');

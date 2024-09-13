@@ -62,6 +62,20 @@ const StudentForm: FC = () => {
                         <label class="label">Student ID</label>
                     </div>
                 </div>
+                <div>
+                    <div class="container">
+                        <input
+                            type="text"
+                            name="staff_name"
+                            id="staff_name"
+                            value={student.staff_name}
+                            required
+                            autocomplete="off"
+                            className="input"
+                        />
+                        <label class="label">Staff Name</label>
+                    </div>
+                </div>
                 <button
                     type="submit"
                     disabled={isLoading}

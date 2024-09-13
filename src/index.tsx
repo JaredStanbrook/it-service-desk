@@ -61,6 +61,7 @@ app.post("/log", async (c) => {
         const studentData: Student = {
             name: getFormDataValue(formData, "name"),
             student_id: getFormDataValue(formData, "student_id"),
+            staff_name: getFormDataValue(formData, "staff_name"),
         };
 
         console.log(studentData);
