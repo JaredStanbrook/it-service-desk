@@ -66,29 +66,52 @@ const FeedbackForm: FC = () => {
                     <div class="container">
                         <input
                             type="text"
-                            name="description"
-                            id="description"
-                            value={feedback.description}
+                            name="staff_name"
+                            id="staff_name"
+                            value={feedback.staff_name}
                             required
                             autocomplete="off"
                             className="input"
                         />
-                        <label class="label">Description</label>
+                        <label class="label">Staff Name</label>
                     </div>
                 </div>
                 <div>
-                    <label class="label">Rating</label>
-                    <div class="container">
-                        <input
-                            type="range"
-                            id="rating"
-                            value={feedback.rating}
+                    <div className="container">
+                        <textarea
+                            name="description"
+                            id="description"
+                            rows={6}
+                            value={feedback.description || ""}
                             required
                             autocomplete="off"
                             className="input"
-                            min="1"
-                            max="5"
+                            //onChange={handleChange}
+                            placeholder="Describe your experience in detail"
                         />
+                    </div>
+                </div>
+                <div>
+                    <div className="container">
+                        <label className="label">Rating (1-5)</label>
+
+                        <select
+                            name="rating"
+                            id="rating"
+                            value={feedback.rating || ""}
+                            //onChange={handleChange}
+                            required
+                            autocomplete="off"
+                            className="input">
+                            <option value="" selected disabled hidden>
+                                Select a rating
+                            </option>
+                            <option value="1">1 - Very Poor</option>
+                            <option value="2">2 - Poor</option>
+                            <option value="3">3 - Average</option>
+                            <option value="4">4 - Good</option>
+                            <option value="5">5 - Excellent</option>
+                        </select>
                     </div>
                 </div>
                 <div class="container">

@@ -66,3 +66,21 @@ class Circle {
 window.onload = () => {
     new GradientAnimation();
 };
+/*
+let lastScrollTop = 0;
+const nav = document.querySelector("nav"); // Target the <nav> element
+
+document.addEventListener("scroll", (event) => {
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+        // User is scrolling down, hide <nav>
+        nav.classList.add("navbar-hidden");
+    } else {
+        // User is scrolling up, show <nav>
+        nav.classList.remove("navbar-hidden");
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
+});
+*/

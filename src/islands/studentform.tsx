@@ -85,6 +85,13 @@ const StudentForm: FC = () => {
                     </button>
                 </div>
             </form>
+            <div className="container mt-4">
+                <a
+                    href="/feedback"
+                    className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">
+                    Go to Feedback
+                </a>
+            </div>
         </div>
     );
 };

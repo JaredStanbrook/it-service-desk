@@ -6,6 +6,7 @@ export type Student = {
 export type Feedback = {
     name: string;
     student_id: string;
+    staff_name: string;
     description: string;
     rating: number;
 };
@@ -58,12 +59,12 @@ export const findAllFeedback = async (db: D1Database) => {
 };
 export const createFeedback = async (db: D1Database, obj: Feedback) => {
     const query = `
-      INSERT INTO feedback (name, student_id,description,rating)
-      VALUES (?, ?, ?, ?)`;
+      INSERT INTO feedback (name, student_id,staff_name,description,rating)
+      VALUES (?, ?, ?, ?, ?)`;
 
     const results = await db
         .prepare(query)
-        .bind(obj.name, obj.student_id, obj.description,obj.rating)
+        .bind(obj.name, obj.student_id, obj.staff_name, obj.description,obj.rating)
         .run();
     const students = results;
     return students;
@@ -78,6 +79,7 @@ export const seedFeedbackTable = async (db: D1Database) => {
     _id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255) NOT NULL,
     student_id VARCHAR(255) NOT NULL,
+    staff_name VARCHAR(255),
     description VARCHAR(255),
     rating TINYINT NOT NULL
 )`;
