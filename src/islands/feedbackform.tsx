@@ -123,6 +123,16 @@ const FeedbackForm: FC = () => {
                     </button>
                 </div>
             </form>
+            <div className="container">
+                <a href="/log" className="bg-white py-2 px-4 rounded-md">
+                    Go to Logger
+                </a>
+            </div>
+            <div className="container">
+                <a href="/all" className="bg-white py-2 px-4 rounded-md">
+                    View All
+                </a>
+            </div>
         </div>
     );
 };

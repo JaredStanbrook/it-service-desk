@@ -85,11 +85,18 @@ const StudentForm: FC = () => {
                     </button>
                 </div>
             </form>
-            <div className="container mt-4">
+            <div className="container">
                 <a
                     href="/feedback"
-                    className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">
+                    className="bg-white py-2 px-4 rounded-md">
                     Go to Feedback
+                </a>
+            </div>
+            <div className="container">
+                <a
+                    href="/all"
+                    className="bg-white py-2 px-4 rounded-md">
+                    View All
                 </a>
             </div>
         </div>
