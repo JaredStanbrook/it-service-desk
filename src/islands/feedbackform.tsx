@@ -129,7 +129,7 @@ const FeedbackForm: FC = () => {
                 </a>
             </div>
             <div className="container">
-                <a href="/all" className="bg-white py-2 px-4 rounded-md">
+                <a href="/all/feedback" className="bg-white py-2 px-4 rounded-md">
                     View All
                 </a>
             </div>
