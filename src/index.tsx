@@ -11,7 +11,7 @@ import { createFeedback } from "./db";
 import StudentForm from "./islands/studentform";
 import FeedbackForm from "./islands/feedbackform";
 import Display from "./islands/display";
-import { getFormDataValue, getFormDataNumber } from "./utils/formData";
+import { getFormDataValue, getFormDataNumber, getFormDataDate} from "./utils/formData";
 
 type Bindings = {
     DB: D1Database;
@@ -92,6 +92,7 @@ app.post("/feedback", async (c) => {
             staff_name: getFormDataValue(formData, "staff_name"),
             description: getFormDataValue(formData, "description"),
             rating: getFormDataNumber(formData, "rating"),
+            service_date: getFormDataDate(formData, "service_date"),
         };
 
         await createFeedback(c.env.DB, feedbackData);

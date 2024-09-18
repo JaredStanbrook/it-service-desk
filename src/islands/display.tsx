@@ -44,6 +44,11 @@ const Display: FC<{ entrys: string }> = (props: { entrys: string }) => {
                         </tbody>
                     </table>
                 </div>
+                <div className="container">
+                    <a href="/" className="bg-white py-2 px-4 rounded-md">
+                        Home
+                    </a>
+                </div>
             </div>
         </Layout>
     );

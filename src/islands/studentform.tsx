@@ -45,7 +45,7 @@ const StudentForm: FC = () => {
                             autocomplete="off"
                             className="input"
                         />
-                        <label class="label">Fullname</label>
+                        <label class="floating-label">Full Name *</label>
                     </div>
                 </div>
                 <div>
@@ -59,7 +59,7 @@ const StudentForm: FC = () => {
                             autocomplete="off"
                             className="input"
                         />
-                        <label class="label">Student ID</label>
+                        <label class="floating-label">Student ID *</label>
                     </div>
                 </div>
                 <div>
@@ -73,7 +73,7 @@ const StudentForm: FC = () => {
                             autocomplete="off"
                             className="input"
                         />
-                        <label class="label">Staff Name</label>
+                        <label class="floating-label">Staff Name *</label>
                     </div>
                 </div>
                 <div class="container">
@@ -91,8 +91,6 @@ const StudentForm: FC = () => {
                     className="bg-white py-2 px-4 rounded-md">
                     Go to Feedback
                 </a>
-            </div>
-            <div className="container">
                 <a
                     href="/all"
                     className="bg-white py-2 px-4 rounded-md">

@@ -461,7 +461,7 @@ html,
 }
 
 body {
-  padding-top: 5rem;
+  padding: 5rem 0;
 }
 
 canvas {
@@ -474,17 +474,17 @@ canvas {
 }
 
 nav {
-  position: fixed;
+  position: absolute;
   top: 0;
+  overflow: hidden;
   width: 100%;
-  z-index: 1000;
   transition: top 0.3s;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  max-width: 1280px;
+  z-index: 1000;
   margin-left: auto;
   margin-right: auto;
 }
@@ -523,7 +523,7 @@ nav ul li a:hover {
 }
 
 footer {
-  position: relative;
+  position: fixed;
   left: 0;
   bottom: 0;
 }
@@ -563,18 +563,48 @@ form {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 20px 0px 20px 0px;
+  padding: 20px 0;
+  margin: 0 2rem;
   position: relative;
   color: #7e97b8;
 }
 
-.container .label {
+.label,
+    .floating-label {
   font-size: 15px;
   padding-left: 10px;
-  position: absolute;
-  left: 13px;
   transition: 0.3s;
   pointer-events: none;
+  text-align: center;
+}
+
+.floating-label {
+  position: absolute;
+  left: 13px;
+}
+
+.emoji-options {
+  font-size: 2rem;
+}
+
+input[type="radio"] + .emoji-label {
+  padding: 10px;
+  -webkit-appearance: none;
+  border: none;
+  cursor: pointer;
+  transition: border 0.2s ease;
+  filter: grayscale(100%);
+  margin: 0 5px;
+  transition: all 0.2s ease;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:hover + .emoji-label,
+    input[type="radio"]:checked + .emoji-label {
+  filter: grayscale(0);
 }
 
 .input {
@@ -584,6 +614,7 @@ form {
   font-weight: 500;
   letter-spacing: 0.4px;
   color: #7e97b8;
+  width: 100%;
   background-color: #ffffff;
   border-style: solid;
   border-width: 2px 2px 2px 2px;
@@ -606,8 +637,8 @@ form {
   box-shadow: none;
 }
 
-.container .input:valid ~ .label,
-    .container .input:focus ~ .label {
+.container .input:valid ~ .floating-label,
+    .container .input:focus ~ .floating-label {
   transition: 0.3s;
   padding-left: 10px;
   transform: translateY(-45px);
@@ -784,40 +815,6 @@ th {
   --tw-contain-style:  ;
 }
 
-.container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -835,14 +832,6 @@ th {
   margin-top: 0.75rem;
 }
 
-.mt-4 {
-  margin-top: 1rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
-}
-
 .block {
   display: block;
 }
@@ -853,10 +842,6 @@ th {
 
 .table {
   display: table;
-}
-
-.hidden {
-  display: none;
 }
 
 .w-full {
@@ -1011,16 +996,6 @@ th {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.hover\:bg-green-600:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(22 163 74 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-indigo-400:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(129 140 248 / var(--tw-bg-opacity));
 }
 
 .hover\:underline:hover {

@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+    corePlugins: {
+        container: false,
+    },
     content: ["./src/**/*.{js,ts,jsx,tsx}", "./src/*.{js,ts,jsx,tsx}", "./public/static/*.js"],
     theme: {
         extend: {

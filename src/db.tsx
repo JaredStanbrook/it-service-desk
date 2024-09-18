@@ -9,6 +9,7 @@ export type Feedback = {
     staff_name: string;
     description: string;
     rating: number;
+    service_date: Date;
 };
 
 export const findAllStudents = async (db: D1Database) => {
@@ -58,13 +59,17 @@ export const findAllFeedback = async (db: D1Database) => {
     return students;
 };
 export const createFeedback = async (db: D1Database, obj: Feedback) => {
+    const year = obj.service_date.getFullYear();
+    const month = String(obj.service_date.getMonth() + 1).padStart(2, '0');
+    const day = String(obj.service_date.getDate()).padStart(2, '0');
+
     const query = `
-      INSERT INTO feedback (name, student_id,staff_name,description,rating)
-      VALUES (?, ?, ?, ?, ?)`;
+      INSERT INTO feedback (name, student_id,staff_name,description,rating,service_date)
+      VALUES (?, ?, ?, ?, ?, ?)`;
 
     const results = await db
         .prepare(query)
-        .bind(obj.name, obj.student_id, obj.staff_name, obj.description,obj.rating)
+        .bind(obj.name, obj.student_id, obj.staff_name, obj.description,obj.rating,`${year}-${month}-${day}`)
         .run();
     const students = results;
     return students;
@@ -81,7 +86,8 @@ export const seedFeedbackTable = async (db: D1Database) => {
     student_id VARCHAR(255) NOT NULL,
     staff_name VARCHAR(255),
     description VARCHAR(255),
-    rating TINYINT NOT NULL
+    rating TINYINT NOT NULL,
+    service_date DATE NOT NULL
 )`;
     const results = await db.prepare(query).run();
     return results;
