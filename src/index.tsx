@@ -28,7 +28,7 @@ app.get("/", (c) => {
     return c.redirect("/feedback");
 });
 app.get(
-    "/all/*",
+    "/view/*",
     basicAuth({
         username: "admin", //c.env.USERNAME
         password: "admin", //c.env.PASSWORD
