@@ -92,7 +92,7 @@ const StudentForm: FC = () => {
                     Go to Feedback
                 </a>
                 <a
-                    href="/all"
+                    href="/view/logs"
                     className="bg-white py-2 px-4 rounded-md">
                     View All
                 </a>

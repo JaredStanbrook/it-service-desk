@@ -45,7 +45,7 @@ const Display: FC<{ entrys: string }> = (props: { entrys: string }) => {
                     </table>
                 </div>
                 <div className="container">
-                    <a href="/" className="bg-white py-2 px-4 rounded-md">
+                    <a href="/" className="bg-white py-2 px-4 rounded-md" onclick="history.go(-1)">
                         Home
                     </a>
                 </div>

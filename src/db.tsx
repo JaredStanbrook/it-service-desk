@@ -58,6 +58,16 @@ export const findAllFeedback = async (db: D1Database) => {
     const students = results;
     return students;
 };
+export const findFeedbackByDate = async (db: D1Database, serviceDate: Date) => {
+    const formattedDate = serviceDate.toISOString().split('T')[0];
+    const query = `
+      SELECT feedback.* 
+      FROM feedback
+      WHERE service_date = ?
+    `;
+    const { results } = await db.prepare(query).bind(formattedDate).all();
+    return results;
+};
 export const createFeedback = async (db: D1Database, obj: Feedback) => {
     const year = obj.service_date.getFullYear();
     const month = String(obj.service_date.getMonth() + 1).padStart(2, '0');

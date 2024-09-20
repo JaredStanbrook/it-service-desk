@@ -2,8 +2,8 @@ import { Hono } from "hono";
 import { renderer } from "./renderer";
 import { basicAuth } from "hono/basic-auth";
 import { prettyJSON } from "hono/pretty-json";
-import { findAllStudents, seedStudentTable, dropStudentTable} from "./db";
-import { findAllFeedback, seedFeedbackTable, dropFeedbackTable} from "./db";
+import { findAllStudents, seedStudentTable, dropStudentTable } from "./db";
+import { findAllFeedback, findFeedbackByDate, seedFeedbackTable, dropFeedbackTable } from "./db";
 import type { Student } from "./db";
 import type { Feedback } from "./db";
 import { createStudent } from "./db";
@@ -11,7 +11,7 @@ import { createFeedback } from "./db";
 import StudentForm from "./islands/studentform";
 import FeedbackForm from "./islands/feedbackform";
 import Display from "./islands/display";
-import { getFormDataValue, getFormDataNumber, getFormDataDate} from "./utils/formData";
+import { getFormDataValue, getFormDataNumber, getFormDataDate } from "./utils/formData";
 
 type Bindings = {
     DB: D1Database;
@@ -41,26 +41,51 @@ app.get(
         password: "reset", //c.env.PASSWORD
     })
 );
-app.get("/all", async (c) => {
+app.get("/view/logs", async (c) => {
     const students = await findAllStudents(c.env.DB);
     return c.render(<Display entrys={JSON.stringify(students)} />, {
         title: "All Entrys",
     });
 });
-app.get("/all/feedback", async (c) => {
-    const feedback = await findAllFeedback(c.env.DB);
+app.get("/view/feedback/", (c) => {
+    return c.redirect("/view/feedback");
+});
+app.get("/view/feedback/:id?", async (c) => {
+    const { id } = c.req.param(); // Get the optional `id` parameter
+
+    // If `id` is provided, try to convert it to a Date object; otherwise, use the current date
+    let date: Date;
+    if (id) {
+        console.log(id);
+        if (id.toLowerCase() == "today") {
+            date = new Date(); // Default to the current date if `id` today
+        } else {
+            // Convert the `id` (assumed to be a date string) to a Date object
+            date = new Date(id);
+            // Check if the conversion to Date was invalid (NaN), and if so, set it to the current date
+            if (isNaN(date.getTime())) {
+                return c.text("Invalid date format", 400); // Return a 400 Bad Request for invalid dates
+            }
+        }
+    } else {
+        const feedback = await findAllFeedback(c.env.DB);
+        return c.render(<Display entrys={JSON.stringify(feedback)} />, {
+            title: "All Feedback",
+        });
+    }
+    const feedback = await findFeedbackByDate(c.env.DB, date); // Call your function with the date object
     return c.render(<Display entrys={JSON.stringify(feedback)} />, {
-        title: "All Feedback",
+        title: "Today's Feedback",
     });
 });
 app.get("/log", async (c) => {
     return c.render(<StudentForm />, {
-        title: "Logger!!",
+        title: "It Service Desk!!",
     });
 });
 app.get("/feedback", async (c) => {
     return c.render(<FeedbackForm />, {
-        title: "Feedback!!",
+        title: "We Love Feedback!!",
     });
 });
 app.post("/log", async (c) => {

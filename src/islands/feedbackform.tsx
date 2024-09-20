@@ -136,8 +136,11 @@ const FeedbackForm: FC = () => {
                 <a href="/log" className="bg-white py-2 px-4 rounded-md">
                     Go to Logger
                 </a>
-                <a href="/all/feedback" className="bg-white py-2 px-4 rounded-md">
-                    View All
+                <a href="/view/feedback/today" className="bg-white py-2 px-4 rounded-md">
+                    View Today's Feedback
+                </a>
+                <a href="/view/feedback" className="bg-white py-2 px-4 rounded-md">
+                    View All Feedback
                 </a>
             </div>
         </div>
