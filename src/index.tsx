@@ -25,7 +25,7 @@ app.use(prettyJSON());
 app.use(renderer);
 
 app.get("/", (c) => {
-    return c.redirect("/log");
+    return c.redirect("/feedback");
 });
 app.get(
     "/all/*",
