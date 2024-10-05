@@ -134,6 +134,9 @@ const ManagerDashboard: FC<{ title: string }> = (props: { title: string }) => {
                 </div>
             </form>
             <div className="container">
+                <a href="/view/staff" className="bg-white py-2 px-4 rounded-md">
+                    View All Staff
+                </a>
                 <a href="/view/clockin" className="bg-white py-2 px-4 rounded-md">
                     View All Clock In Logs
                 </a>
