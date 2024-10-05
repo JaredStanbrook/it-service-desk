@@ -1,5 +1,4 @@
 import type { FC } from "hono/jsx";
-import type { Student } from "../db";
 
 const Layout: FC = (props) => {
     return (
@@ -9,7 +8,7 @@ const Layout: FC = (props) => {
     );
 };
 
-const Display: FC<{ entrys: string }> = (props: { entrys: string }) => {
+const Display: FC<{ entrys: string, title: string }> = (props: { entrys: string, title: string }) => {
     const data = JSON.parse(props.entrys);
     // Determine the table headers dynamically based on the keys of the first entry
     const headers = data.length > 0 ? Object.keys(data[0]) : [];
@@ -17,7 +16,7 @@ const Display: FC<{ entrys: string }> = (props: { entrys: string }) => {
     return (
         <Layout>
             <div className="container mx-auto p-6">
-                <h1 className="text-4xl font-bold text-center mb-8">Dynamic Entries</h1>
+                <h1 className="text-4xl font-bold text-center mb-8">{props.title}</h1>
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg">
                         <thead className="bg-gray-200">

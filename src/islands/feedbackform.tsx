@@ -2,12 +2,14 @@ import { useState } from "hono/jsx";
 import type { FC } from "hono/jsx";
 import type { Feedback } from "../db";
 
-const FeedbackForm: FC = () => {
+const FeedbackForm: FC<{ title: string }> = (props: { title: string }) => {
     const [feedback, setFeedback] = useState<Partial<Feedback>>({});
     const [isLoading, setIsLoading] = useState(false);
-
+    const date = new Date().toISOString().split('T')[0]
+    
     const handleSubmit = async (e: Event) => {
         e.preventDefault();
+        if (isLoading) return;
         setIsLoading(true);
         console.log("Submitting feedback:", feedback);
         const formData = new FormData();
@@ -32,7 +34,7 @@ const FeedbackForm: FC = () => {
 
     return (
         <div>
-            <h1 className="text-5xl font-semibold text-white text-center p-4">Welcome</h1>
+            <h1 className="text-5xl font-semibold text-white text-center p-4">{props.title}</h1>
             <form onSubmit={handleSubmit} method="POST">
                 <div className="container">
                     <input
@@ -41,6 +43,7 @@ const FeedbackForm: FC = () => {
                         id="name"
                         value={feedback.name}
                         required
+                        autocorrect="off"
                         autocomplete="off"
                         className="input"
                     />
@@ -53,6 +56,7 @@ const FeedbackForm: FC = () => {
                         id="student_id"
                         value={feedback.student_id}
                         required
+                        autocorrect="off"
                         autocomplete="off"
                         className="input"
                     />
@@ -65,6 +69,7 @@ const FeedbackForm: FC = () => {
                         id="staff_name"
                         value={feedback.staff_name}
                         required
+                        autocorrect="off"
                         autocomplete="off"
                         className="input"
                     />
@@ -77,8 +82,10 @@ const FeedbackForm: FC = () => {
                         name="service_date"
                         id="service_date"
                         required
+                        autocorrect="off"
                         autocomplete="off"
                         className="input"
+                        value={date}
                     />
                 </div>
                 <div class="container">
@@ -111,7 +118,9 @@ const FeedbackForm: FC = () => {
                     </div>
                 </div>
                 <div className="container">
-                    <label class="label">Please provide additional comments or suggestions for improvement!</label>
+                    <label class="label">
+                        Please provide additional comments or suggestions for improvement!
+                    </label>
                     <textarea
                         name="description"
                         id="description"
@@ -125,6 +134,7 @@ const FeedbackForm: FC = () => {
                 </div>
                 <div class="container">
                     <button
+                        class="soft_button"
                         type="submit"
                         disabled={isLoading}
                         className={`${isLoading ? "bg-indigo-400" : ""}`}>
@@ -133,9 +143,6 @@ const FeedbackForm: FC = () => {
                 </div>
             </form>
             <div className="container">
-                <a href="/log" className="bg-white py-2 px-4 rounded-md">
-                    Go to Logger
-                </a>
                 <a href="/view/feedback/today" className="bg-white py-2 px-4 rounded-md">
                     View Today's Feedback
                 </a>

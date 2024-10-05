@@ -5,9 +5,9 @@
         "dev": "concurrently \"npm:preview\" \"npm:watch:vite\" \"npm:watch:css\"",
         "watch:vite": "vite build --watch",
         "watch:css": "tailwindcss -i src/style.css -o public/static/style.css --watch",
+        "preview": "wrangler pages dev --live-reload dist",
         "build": "$npm_execpath run build:css && vite build",
         "build:css": "tailwindcss -i src/style.css -o public/static/style.css",
-        "preview": "wrangler pages dev --live-reload dist",
         "deploy": "$npm_execpath run build && wrangler pages deploy dist"
     },
     "dependencies": {

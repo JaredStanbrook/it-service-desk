@@ -1,19 +1,19 @@
 import { useState } from "hono/jsx";
 import type { FC } from "hono/jsx";
-import type { Student } from "../db";
+import type { Staff } from "../db";
 
-const StudentForm: FC = () => {
-    const [student, setStudent] = useState<Partial<Student>>({});
+const StaffForm: FC<{ title: string }> = (props: { title: string }) => {
+    const [staff, setStaff] = useState<Partial<Staff>>({});
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e: Event) => {
         e.preventDefault();
         setIsLoading(true);
-        console.log("Submitting student:", student);
+        console.log("Submitting staff:", staff);
         const formData = new FormData();
 
         try {
-            const response = await fetch("/create", {
+            const response = await fetch("/staff", {
                 method: "POST",
                 body: formData,
             });
@@ -22,7 +22,7 @@ const StudentForm: FC = () => {
 
             const result = await response.json();
             console.log("Success:", result);
-            setStudent({});
+            setStaff({});
         } catch (error) {
             console.error("Error:", error);
         } finally {
@@ -32,7 +32,7 @@ const StudentForm: FC = () => {
 
     return (
         <div>
-            <h1 className="text-5xl font-semibold text-white text-center p-4">Welcome</h1>
+            <h1 className="text-5xl font-semibold text-white text-center p-4">{props.title}</h1>
             <form onSubmit={handleSubmit} method="POST">
                 <div>
                     <div className="container">
@@ -40,7 +40,7 @@ const StudentForm: FC = () => {
                             type="text"
                             name="name"
                             id="name"
-                            value={student.name}
+                            value={staff.name}
                             required
                             autocomplete="off"
                             className="input"
@@ -52,32 +52,19 @@ const StudentForm: FC = () => {
                     <div class="container">
                         <input
                             type="text"
-                            name="student_id"
-                            id="student_id"
-                            value={student.student_id}
+                            name="staff_id"
+                            id="staff_id"
+                            value={staff.staff_id}
                             required
                             autocomplete="off"
                             className="input"
                         />
-                        <label class="floating-label">Student ID *</label>
-                    </div>
-                </div>
-                <div>
-                    <div class="container">
-                        <input
-                            type="text"
-                            name="staff_name"
-                            id="staff_name"
-                            value={student.staff_name}
-                            required
-                            autocomplete="off"
-                            className="input"
-                        />
-                        <label class="floating-label">Staff Name *</label>
+                        <label class="floating-label">Staff ID *</label>
                     </div>
                 </div>
                 <div class="container">
                     <button
+                        class="soft_button"
                         type="submit"
                         disabled={isLoading}
                         className={`${isLoading ? "bg-indigo-400" : ""}`}>
@@ -87,18 +74,18 @@ const StudentForm: FC = () => {
             </form>
             <div className="container">
                 <a
-                    href="/feedback"
+                    href="/"
                     className="bg-white py-2 px-4 rounded-md">
-                    Go to Feedback
+                    Home
                 </a>
                 <a
-                    href="/view/logs"
+                    href="/view/staff"
                     className="bg-white py-2 px-4 rounded-md">
-                    View All
+                    View All Staff
                 </a>
             </div>
         </div>
     );
 };
 
-export default StudentForm;
+export default StaffForm;
