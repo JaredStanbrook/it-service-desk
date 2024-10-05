@@ -47,7 +47,7 @@ To get a local copy up and running, follow these simple steps.
     ```sh
     npx wrangler d1 execute <DATABASE_NAME> --remote --file=./schema.sql
     ```
-    ## Contributing
+## Contributing
 
 This is intended to be worked on by Murdoch University students studying ICT299. Any contributions you make are **greatly appreciated**.
 
