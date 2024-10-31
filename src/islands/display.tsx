@@ -14,7 +14,7 @@ const Display: FC<{ entrys: string, title: string }> = (props: { entrys: string,
     const headers = data.length > 0 ? Object.keys(data[0]) : [];
 
     return (
-        <Layout>
+        <>
             <div className="container mx-auto p-6">
                 <h1 className="text-4xl font-bold text-center mb-8">{props.title}</h1>
                 <div className="overflow-x-auto">
@@ -49,7 +49,7 @@ const Display: FC<{ entrys: string, title: string }> = (props: { entrys: string,
                     </a>
                 </div>
             </div>
-        </Layout>
+        </>
     );
 };
 

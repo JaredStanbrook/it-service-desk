@@ -137,7 +137,18 @@ export const seedFeedbackTable = async (db: D1Database) => {
     const results = await db.prepare(query).run();
     return results;
 };
-
+export const flushFeedbackTable = async (db: D1Database) => {
+    const query = `
+        DELETE FROM feedback
+        WHERE _id NOT IN (
+            SELECT MIN(_id)
+            FROM feedback
+            GROUP BY name, student_id, service_date, description
+        )
+    `;
+    const results = await db.prepare(query).run();
+    return results;
+};
 // Staff Queries!!
 export const findAllStaff = async (db: D1Database) => {
     const query = `

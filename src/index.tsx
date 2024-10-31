@@ -21,6 +21,7 @@ import {
     findFeedbackByDate,
     seedFeedbackTable,
     dropFeedbackTable,
+    flushFeedbackTable,
 } from "./db";
 import { createStaff, findAllStaff, findStaffById, seedStaffTable, dropStaffTable } from "./db";
 import {
@@ -318,5 +319,9 @@ app.get("/reset/clockreg", async (c) => {
     await dropClockRegTable(c.env.DB);
     await seedClockRegTable(c.env.DB);
     return c.redirect("/clockin", 303);
+});
+app.get("/flush/feedback", async (c) => {
+    await flushFeedbackTable(c.env.DB);
+    return c.redirect("/feedback", 303);
 });
 export default app;
