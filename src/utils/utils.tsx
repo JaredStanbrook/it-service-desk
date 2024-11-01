@@ -1,8 +1,11 @@
 function getCurrentTime(): string {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');  // Get hours and pad to 2 digits
-    const minutes = now.getMinutes().toString().padStart(2, '0');  // Get minutes and pad to 2 digits
-    return `${hours}:${minutes}`;
+    const now = new Date().toLocaleTimeString("en-US", {
+        timeZone: "Australia/Perth",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+    });
+    return now;
 }
 
 export { getCurrentTime };

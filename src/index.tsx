@@ -2,6 +2,8 @@ import { Hono } from "hono";
 import { renderer } from "./renderer";
 import { basicAuth } from "hono/basic-auth";
 import { prettyJSON } from "hono/pretty-json";
+import { DateTime } from "luxon";
+
 import {
     getFormDataValue,
     getFormDataNumber,
@@ -82,16 +84,16 @@ app.get("/view/logs", async (c) => {
 });
 app.get("/view/feedback/:id?", async (c) => {
     const { id } = c.req.param(); // Get the optional `id` parameter
-
+    const timezone = "Australia/Perth";
     // If `id` is provided, try to convert it to a Date object; otherwise, use the current date
     let date: Date;
     if (id) {
         console.log(id);
         if (id.toLowerCase() == "today") {
-            date = new Date(); // Default to the current date if `id` today
+            date = DateTime.now().setZone(timezone).toJSDate(); // Default to the current date if `id` today
         } else {
             // Convert the `id` (assumed to be a date string) to a Date object
-            date = new Date(id);
+            date = DateTime.fromISO(id, { zone: timezone }).toJSDate();
             // Check if the conversion to Date was invalid (NaN), and if so, set it to the current date
             if (isNaN(date.getTime())) {
                 return c.text("Invalid date format", 400); // Return a 400 Bad Request for invalid dates
@@ -142,7 +144,7 @@ app.get("/clockin", async (c) => {
     });
 });
 app.get("/manager", async (c) => {
-    return c.render(<ManagerForm title={"!With great power comes great responsibility!"}/>, {
+    return c.render(<ManagerForm title={"!With great power comes great responsibility!"} />, {
         title: "Overseer",
     });
 });
@@ -227,15 +229,17 @@ app.post("/staff", async (c) => {
     } catch (error) {
         console.error("Error handling POST request:", error);
         return new Response("Staff already exists!", { status: 409 });
-      }
+    }
 });
 app.post("/clockin", async (c) => {
     try {
+        const timezone = "Australia/Perth";
+
         const formData = await c.req.formData();
         const clockinData: ClockReg = {
             staff_id: getFormDataValue(formData, "staff_id"),
             clocked_in: getFormDataBool(formData, "clocked_in"),
-            date: new Date(),
+            date: DateTime.now().setZone(timezone).toJSDate(),
             time: getCurrentTime(),
         };
 
@@ -269,7 +273,7 @@ app.post("/clockin", async (c) => {
                     // Only update if time difference is valid
                     const staffclockData: StaffClock = {
                         staff_id: getFormDataValue(formData, "staff_id"),
-                        start_date: clockstate?.date ?? new Date(),
+                        start_date: clockstate?.date ?? DateTime.now().setZone(timezone).toJSDate(),
                         end_date: new Date(),
                         start_time: clockstate?.time ?? "00:00:00",
                         end_time: getCurrentTime(),
